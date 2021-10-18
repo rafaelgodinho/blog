@@ -1,0 +1,15 @@
+[Unit]
+Description=rg.land blog
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/rgland/blog
+ExecStart=bash /rgland/blog/start.sh
+ExecStop=bash /rgland/blog/stop.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
