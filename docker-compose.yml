@@ -2,10 +2,15 @@ version: "3.9"
     
 services:
   db:
-    image: mysql:5.7
+    image: hsheth2/mysql-low-memory:5.7
     volumes:
       - db_data:/var/lib/mysql
     restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 128M
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
       MYSQL_DATABASE: $MYSQL_DATABASE
@@ -21,6 +26,11 @@ services:
     ports:
       - "80:80"
     restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 128M
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: $MYSQL_USER
